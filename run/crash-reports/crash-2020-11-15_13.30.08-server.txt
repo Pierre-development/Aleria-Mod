@@ -1,0 +1,284 @@
+---- Minecraft Crash Report ----
+// Don't be sad. I'll do better next time, I promise!
+
+Time: 15/11/20 13:30
+Description: Watching Server
+
+java.lang.Error: ServerHangWatchdog detected that a single server tick took 60,05 seconds (should be max 0.05)
+	at net.minecraft.world.chunk.NibbleArray.set(NibbleArray.java:29)
+	at net.minecraft.world.chunk.BlockStateContainer.getDataForNBT(BlockStateContainer.java:152)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.writeChunkToNBT(AnvilChunkLoader.java:325)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.saveChunk(AnvilChunkLoader.java:174)
+	at net.minecraft.world.gen.ChunkProviderServer.saveChunkData(ChunkProviderServer.java:202)
+	at net.minecraft.world.gen.ChunkProviderServer.tick(ChunkProviderServer.java:271)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:207)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:756)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:397)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:668)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:526)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server Watchdog
+Stacktrace:
+	at net.minecraft.world.chunk.NibbleArray.set(NibbleArray.java:29)
+	at net.minecraft.world.chunk.BlockStateContainer.getDataForNBT(BlockStateContainer.java:152)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.writeChunkToNBT(AnvilChunkLoader.java:325)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.saveChunk(AnvilChunkLoader.java:174)
+	at net.minecraft.world.gen.ChunkProviderServer.saveChunkData(ChunkProviderServer.java:202)
+	at net.minecraft.world.gen.ChunkProviderServer.tick(ChunkProviderServer.java:271)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:207)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:756)
+	at net.minecraft.server.dedicated.DedicatedServer.updateTimeLightAndEntities(DedicatedServer.java:397)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:668)
+
+-- Thread Dump --
+Details:
+	Threads: "Netty Epoll Server IO #3" Id=39 RUNNABLE
+	at io.netty.channel.epoll.Native.epollWait0(Native Method)
+	at io.netty.channel.epoll.Native.epollWait(Native.java:117)
+	at io.netty.channel.epoll.EpollEventLoop.epollWait(EpollEventLoop.java:223)
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:247)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"File IO Thread" Id=38 RUNNABLE
+	at java.util.zip.Deflater.needsInput(Deflater.java:321)
+	at java.util.zip.DeflaterOutputStream.write(DeflaterOutputStream.java:210)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.write(BufferedOutputStream.java:126)
+	-  locked java.io.BufferedOutputStream@473c40cb
+	at java.io.DataOutputStream.write(DataOutputStream.java:107)
+	-  locked java.io.DataOutputStream@49fba65c
+	at java.io.FilterOutputStream.write(FilterOutputStream.java:97)
+	at net.minecraft.nbt.NBTTagByteArray.write(NBTTagByteArray.java:43)
+	at net.minecraft.nbt.NBTTagCompound.writeEntry(NBTTagCompound.java:475)
+	...
+
+
+"Server Watchdog" Id=37 RUNNABLE
+	at sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at sun.management.ThreadImpl.dumpAllThreads(ThreadImpl.java:454)
+	at net.minecraft.server.dedicated.ServerHangWatchdog.run(ServerHangWatchdog.java:45)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Netty Epoll Server IO #2" Id=36 RUNNABLE (in native)
+	at io.netty.channel.epoll.Native.epollWait0(Native Method)
+	at io.netty.channel.epoll.Native.epollWait(Native.java:117)
+	at io.netty.channel.epoll.EpollEventLoop.epollWait(EpollEventLoop.java:223)
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:247)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"threadDeathWatcher-2-1" Id=35 TIMED_WAITING
+	at java.lang.Thread.sleep(Native Method)
+	at io.netty.util.ThreadDeathWatcher$Watcher.run(ThreadDeathWatcher.java:152)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:144)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Netty Epoll Server IO #1" Id=34 RUNNABLE (in native)
+	at io.netty.channel.epoll.Native.epollWait0(Native Method)
+	at io.netty.channel.epoll.Native.epollWait(Native.java:117)
+	at io.netty.channel.epoll.EpollEventLoop.epollWait(EpollEventLoop.java:223)
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:247)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Netty Epoll Server IO #0" Id=33 RUNNABLE (in native)
+	at io.netty.channel.epoll.Native.epollWait0(Native Method)
+	at io.netty.channel.epoll.Native.epollWait(Native.java:117)
+	at io.netty.channel.epoll.EpollEventLoop.epollWait(EpollEventLoop.java:223)
+	at io.netty.channel.epoll.EpollEventLoop.run(EpollEventLoop.java:247)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:858)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"JLine terminal non blocking reader thread" Id=30 RUNNABLE (in native)
+	at java.io.FileInputStream.read0(Native Method)
+	at java.io.FileInputStream.read(FileInputStream.java:207)
+	at org.jline.terminal.impl.DumbTerminal$1.read(DumbTerminal.java:48)
+	at org.jline.terminal.impl.DumbTerminal$1.read(DumbTerminal.java:85)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+	-  locked java.io.InputStreamReader@4dc42bbb
+	at sun.nio.cs.StreamDecoder.read0(StreamDecoder.java:127)
+	-  locked java.io.InputStreamReader@4dc42bbb
+	...
+
+
+"Server console handler" Id=29 TIMED_WAITING on org.jline.utils.NonBlockingReader@8c6ac67
+	at java.lang.Object.wait(Native Method)
+	-  waiting on org.jline.utils.NonBlockingReader@8c6ac67
+	at org.jline.utils.NonBlockingReader.read(NonBlockingReader.java:174)
+	at org.jline.utils.NonBlockingReader.read(NonBlockingReader.java:113)
+	at org.jline.keymap.BindingReader.readCharacter(BindingReader.java:132)
+	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:109)
+	at org.jline.keymap.BindingReader.readBinding(BindingReader.java:60)
+	at org.jline.reader.impl.LineReaderImpl.readBinding(LineReaderImpl.java:724)
+	at org.jline.reader.impl.LineReaderImpl.readLine(LineReaderImpl.java:526)
+	...
+
+
+"DestroyJavaVM" Id=28 RUNNABLE
+
+
+"Server thread" Id=26 RUNNABLE
+	at net.minecraft.world.chunk.NibbleArray.set(NibbleArray.java:29)
+	at net.minecraft.world.chunk.BlockStateContainer.getDataForNBT(BlockStateContainer.java:152)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.writeChunkToNBT(AnvilChunkLoader.java:325)
+	at net.minecraft.world.chunk.storage.AnvilChunkLoader.saveChunk(AnvilChunkLoader.java:174)
+	at net.minecraft.world.gen.ChunkProviderServer.saveChunkData(ChunkProviderServer.java:202)
+	at net.minecraft.world.gen.ChunkProviderServer.tick(ChunkProviderServer.java:271)
+	at net.minecraft.world.WorldServer.tick(WorldServer.java:207)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:756)
+	...
+
+
+"TimerQueue" Id=25 TIMED_WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@3984050d
+	at sun.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@3984050d
+	at java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:215)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:2078)
+	at java.util.concurrent.DelayQueue.take(DelayQueue.java:223)
+	at javax.swing.TimerQueue.run(TimerQueue.java:174)
+	at java.lang.Thread.run(Thread.java:748)
+
+	Number of locked synchronizers = 1
+	- java.util.concurrent.locks.ReentrantLock$NonfairSync@2dd98fac
+
+
+"Thread-2" Id=24 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@55717875
+	at sun.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@55717875
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at com.mojang.util.QueueLogAppender.getNextLogEvent(QueueLogAppender.java:77)
+	at net.minecraft.server.gui.MinecraftServerGui$4.run(MinecraftServerGui.java:154)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"AWT-EventQueue-0" Id=22 WAITING on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@68e95328
+	at sun.misc.Unsafe.park(Native Method)
+	-  waiting on java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject@68e95328
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+	at java.awt.EventQueue.getNextEvent(EventQueue.java:554)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:187)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	...
+
+
+"AWT-Shutdown" Id=23 WAITING on java.lang.Object@9ac0576
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.Object@9ac0576
+	at java.lang.Object.wait(Object.java:502)
+	at sun.awt.AWTAutoShutdown.run(AWTAutoShutdown.java:295)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"AWT-XAWT" Id=21 RUNNABLE (in native)
+	at sun.awt.X11.XToolkit.waitForEvents(Native Method)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:574)
+	at sun.awt.X11.XToolkit.run(XToolkit.java:538)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Java2D Disposer" Id=19 WAITING on java.lang.ref.ReferenceQueue$Lock@1099c523
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@1099c523
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at sun.java2d.Disposer.run(Disposer.java:148)
+	at java.lang.Thread.run(Thread.java:748)
+
+
+"Server Infinisleeper" Id=18 TIMED_WAITING
+	at java.lang.Thread.sleep(Native Method)
+	at net.minecraft.server.dedicated.DedicatedServer$1.run(DedicatedServer.java:82)
+
+
+"Snooper Timer" Id=17 TIMED_WAITING on java.util.TaskQueue@4e75b595
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.util.TaskQueue@4e75b595
+	at java.util.TimerThread.mainLoop(Timer.java:552)
+	at java.util.TimerThread.run(Timer.java:505)
+
+
+"Attach Listener" Id=13 RUNNABLE
+
+
+"Monitor Ctrl-Break" Id=5 RUNNABLE (in native)
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:284)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:326)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:178)
+	-  locked java.io.InputStreamReader@6ca7cf60
+	at java.io.InputStreamReader.read(InputStreamReader.java:184)
+	...
+
+
+"Signal Dispatcher" Id=4 RUNNABLE
+
+
+"Finalizer" Id=3 WAITING on java.lang.ref.ReferenceQueue$Lock@549f037
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.ReferenceQueue$Lock@549f037
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:165)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:216)
+
+
+"Reference Handler" Id=2 WAITING on java.lang.ref.Reference$Lock@5ba79d60
+	at java.lang.Object.wait(Native Method)
+	-  waiting on java.lang.ref.Reference$Lock@5ba79d60
+	at java.lang.Object.wait(Object.java:502)
+	at java.lang.ref.Reference.tryHandlePending(Reference.java:191)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:153)
+
+
+
+Stacktrace:
+	at net.minecraft.server.dedicated.ServerHangWatchdog.run(ServerHangWatchdog.java:62)
+	at java.lang.Thread.run(Thread.java:748)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12.2
+	Operating System: Linux (amd64) version 5.4.0-52-generic
+	Java Version: 1.8.0_271, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 670546080 bytes (639 MB) / 842530816 bytes (803 MB) up to 1838153728 bytes (1753 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 20, tallocated: 86
+	FML: MCP 9.42 Powered by Forge 14.23.5.2854 5 mods loaded, 5 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+
+	| State  | ID        | Version      | Source                                                             | Signature |
+	|:------ |:--------- |:------------ |:------------------------------------------------------------------ |:--------- |
+	| LCHIJA | minecraft | 1.12.2       | minecraft.jar                                                      | None      |
+	| LCHIJA | mcp       | 9.42         | minecraft.jar                                                      | None      |
+	| LCHIJA | FML       | 8.0.99.99    | forge-1.12.2-14.23.5.2854_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | forge     | 14.23.5.2854 | forge-1.12.2-14.23.5.2854_mapped_snapshot_20171003-1.12-recomp.jar | None      |
+	| LCHIJA | aleria    | 1.3          | main                                                               | None      |
+
+	Loaded coremods (and transformers): 
+	Profiler Position: N/A (disabled)
+	Player Count: 1 / 20; [EntityPlayerMP['sdds_'/338, l='world', x=187,83, y=70,69, z=262,74]]
+	Is Modded: Definitely; Server brand changed to 'fml,forge'
+	Type: Dedicated Server (map_server.txt)
