@@ -1,6 +1,7 @@
 package fr.pierre.aleriamod;
 
 import fr.pierre.aleriamod.events.RegisteringEvent;
+import fr.pierre.aleriamod.handlers.GuiHandlers;
 import fr.pierre.aleriamod.proxy.Common;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import static fr.pierre.aleriamod.utilis.Constants.*;
 
@@ -31,9 +33,8 @@ public class Main {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event) {
         proxy.init();
-
     }
 
     @Mod.EventHandler

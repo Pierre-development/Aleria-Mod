@@ -1,7 +1,10 @@
 package fr.pierre.aleriamod.init;
 
 import com.google.common.collect.Lists;
+import fr.pierre.aleriamod.Main;
 import fr.pierre.aleriamod.blocks.BlockMod;
+import fr.pierre.aleriamod.blocks.chest.alergon.AlergonChest;
+import fr.pierre.aleriamod.blocks.chest.alergon.TileEntityAlergonChest;
 import fr.pierre.aleriamod.utilis.Constants;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -21,6 +24,7 @@ public class Blocks {
     private static final Blocks instance = new Blocks();
 
     public static Block alergon_block;
+    public static Block alergon_chest;
 
     private List<Block> blocks;
 
@@ -29,10 +33,13 @@ public class Blocks {
         blocks = Lists.newArrayList();
 
         alergon_block = new BlockMod("alergon_block", Material.IRON);
+        alergon_chest = new AlergonChest(Material.IRON);
+
     }
 
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event) {
+        Item.getItemFromBlock(alergon_block);
         for(Block block : blocks) {
             registerModel(block);
         }

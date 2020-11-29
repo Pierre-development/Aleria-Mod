@@ -10,4 +10,6 @@ public class Constants {
     public static final String CLIENTPROXY = "fr.pierre.aleriamod.proxy.Client";
     public static final String SERVERPROXY = "fr.pierre.aleriamod.proxy.Server";
 
+    public static int ALERGONCHESTGUI = 2;
+
 }

@@ -1,9 +1,7 @@
 package fr.pierre.aleriamod.init;
 
 
-
 import com.google.common.collect.Lists;
-import fr.pierre.aleriamod.items.ItemMod;
 import fr.pierre.aleriamod.items.armors.AlergonArmor;
 import fr.pierre.aleriamod.items.tools.ItemHoe;
 import fr.pierre.aleriamod.items.tools.ItemPickaxe;
@@ -70,7 +68,7 @@ public class Items {
 
     public static class ArmorMaterial {
         public static final ItemArmor.ArmorMaterial ALERGON = EnumHelper.addArmorMaterial("alergon", Constants.MODID + ":alergon", 40, new int[] {10, 10, 10, 20}, 19, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
-        public static final ItemArmor.ArmorMaterial NEODYME = EnumHelper.addArmorMaterial("neodyme", "neodyme", 50, new int[] {6, 12, 16, 6}, 19, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
+       // public static final ItemArmor.ArmorMaterial NEODYME = EnumHelper.addArmorMaterial("neodyme", "neodyme", 50, new int[] {6, 12, 16, 6}, 19, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
     }
 
     public static class ToolMaterial {
