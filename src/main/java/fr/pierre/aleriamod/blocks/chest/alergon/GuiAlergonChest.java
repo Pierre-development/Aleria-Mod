@@ -22,14 +22,14 @@ public class GuiAlergonChest extends GuiContainer {
         this.tileEntityAlergonChest = tileEntityAlergonChest;
         this.inventoryPlayer = inventoryPlayer;
 
-        this.xSize = 179;
-        this.ySize = 256;
+        this.xSize = 230;
+        this.ySize = 222;
 
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRenderer.drawString(this.tileEntityAlergonChest.getDisplayName().getUnformattedText(), 8, 6, Color.RED.getRGB());
+        //this.fontRenderer.drawString(this.tileEntityAlergonChest.getDisplayName().getUnformattedText(), 8, 6, Color.RED.getRGB());
     }
 
     @Override

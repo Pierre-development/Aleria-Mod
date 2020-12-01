@@ -1,9 +1,11 @@
 package fr.pierre.aleriamod.blocks.chest.alergon;
 
+import net.minecraft.block.BlockChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerChest;
+import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -18,25 +20,25 @@ public class ContainerAlergonChest extends Container {
         this.numRows = chestInventory.getSizeInventory() / 9;
         chestInventory.openInventory(player);
 
-        for (int j = 0; j < this.numRows; ++j)
+        for (int j = 0; j < 6; ++j)
         {
-            for (int k = 0; k < 9; ++k)
+            for (int k = 0; k < 12; ++k)
             {
                 this.addSlotToContainer(new Slot(chestInventory, k + j * 9, 8 + k * 18, 18 + j * 18));
             }
         }
 
-        for (int l = 0; l < 3; ++l)
+        for(int i = 0; i < 3; i++)
         {
-            for (int j1 = 0; j1 < 9; ++j1)
+            for(int j = 0; j < 9; j++)
             {
-                this.addSlotToContainer(new Slot(playerInv, j1 + l * 9 + 9, 8 + j1 * 18, 175+ l*18));
+                this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 103 + i * 18 + 37));
             }
         }
 
-        for (int i1 = 0; i1 < 9; ++i1)
+        for(int i = 0; i < 9; i++)
         {
-            this.addSlotToContainer(new Slot(playerInv, i1, 8 + i1 * 18, 233));
+            this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 161 + 37));
         }
 
     }
