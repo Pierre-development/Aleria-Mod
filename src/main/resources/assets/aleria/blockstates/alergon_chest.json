@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "aleria:block/example_chest"
+    }
+  }
+}
