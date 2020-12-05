@@ -34,7 +34,6 @@ public class AlergonChestContainer extends Container {
         {
             for (int k = 0; k < 12; ++k)
             {
-                ChestTileEntityRenderer
                 this.addSlot(new Slot(alergonChestTileEntity, k + j * 12, 8 + k * 18, 18 + j * 18));
             }
         }
